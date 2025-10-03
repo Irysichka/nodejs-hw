@@ -4,7 +4,7 @@ export const errorHandler = (err, req, res, next) => {
   console.error('Error:', err.message);
   if (err instanceof HttpError) {
     return res.status(err.status).json({
-      error: err.message || err.name,
+      message: err.message || err.name,
     });
   }
   const isProd = process.env.NODE_ENV === "production";
