@@ -1,7 +1,6 @@
 import { Schema } from 'mongoose';
 import { model } from 'mongoose';
 import { TAGS } from '../constants/tags.js';
-import { getAllNotesSchema } from '../validations/notesValidation.js';
 
 const noteSchema = new Schema(
   {
@@ -24,6 +23,6 @@ const noteSchema = new Schema(
   { timestamps: true, }
 );
 
-getAllNotesSchema.index({ title: "text", content: "text" });
+noteSchema.index({ title: "text", content: "text" });
 
 export const Note = model("Note", noteSchema);
