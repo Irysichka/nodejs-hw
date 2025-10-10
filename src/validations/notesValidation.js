@@ -10,7 +10,7 @@ export const getAllNotesSchema = {
   [Segments.QUERY]: Joi.object({
     page: Joi.number().integer().min(1).default(1),
     perPage: Joi.number().integer().min(5).max(20).default(10),
-    tag: Joi.string().valid(...TAGS).optional(),
+    tag: Joi.string().valid(...TAGS).trim().optional(),
     search: Joi.string().trim().allow(""),
   })
 };
@@ -33,7 +33,7 @@ export const createNoteSchema = {
 "string.base": "Content must be a string",
 			"string.min": "Content should have at least {#limit} characters",
     }),
-    tag: Joi.string().valid(...TAGS).required().trim().messages({
+    tag: Joi.string().valid(...TAGS).trim().messages({
       'any.only': `Tag must be one of: ${TAGS.join(', ')}`,
     }),
   })
